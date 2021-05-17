@@ -7,6 +7,12 @@ class Controller extends StatelessWidget {
 
   Controller(this._changeText);
 
+  void _handleButtons(message) {
+    print(message);
+    _changeText(message);
+    // irgendeine bluetooth scheiße
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,8 +24,8 @@ class Controller extends StatelessWidget {
             style: TextStyle(color: Colors.white),
             // style: TextStyle(fontSize: 14),
           ),
-          onTapDown: (e) => _changeText('FORWARD'),
-          onTapUp: (e) => _changeText('STOP'),
+          onTapDown: (e) => _handleButtons('FORWARD'),
+          onTapUp: (e) => _handleButtons('STOP'),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -30,10 +36,11 @@ class Controller extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
                 // style: TextStyle(fontSize: 14),
               ),
-              onTapDown: (e) => _changeText('LEFT'),
-              onTapUp: (e) => _changeText('STOP'),
+              onTapDown: (e) => _handleButtons('LEFT'),
+              onTapUp: (e) => _handleButtons('STOP'),
             ),
             Container(
+              margin: EdgeInsets.all(10),
               height: 110,
               width: 110,
             ),
@@ -43,8 +50,8 @@ class Controller extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
                 // style: TextStyle(fontSize: 14),
               ),
-              onTapDown: (e) => _changeText('RIGHT'),
-              onTapUp: (e) => _changeText('STOP'),
+              onTapDown: (e) => _handleButtons('RIGHT'),
+              onTapUp: (e) => _handleButtons('STOP'),
             ),
           ],
         ),
@@ -54,8 +61,8 @@ class Controller extends StatelessWidget {
             style: TextStyle(color: Colors.white),
             // style: TextStyle(fontSize: 14),
           ),
-          onTapDown: (e) => _changeText('BACK'),
-          onTapUp: (e) => _changeText('STOP'),
+          onTapDown: (e) => _handleButtons('BACK'),
+          onTapUp: (e) => _handleButtons('STOP'),
         ),
       ],
     );

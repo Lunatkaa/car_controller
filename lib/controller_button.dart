@@ -18,7 +18,7 @@ class ControllerButton extends StatelessWidget {
       onTapUp: this.onTapUp,
       child: Container(
         alignment: Alignment.center,
-        margin: EdgeInsets.all(12),
+        margin: EdgeInsets.all(10),
         height: 110,
         width: 110,
         child: this.child,
