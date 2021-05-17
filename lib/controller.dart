@@ -15,6 +15,7 @@ class Controller extends StatelessWidget {
         ControllerButton(
           child: Text(
             'FORWARD',
+            style: TextStyle(color: Colors.white),
             // style: TextStyle(fontSize: 14),
           ),
           onTapDown: (e) => _changeText('FORWARD'),
@@ -26,6 +27,7 @@ class Controller extends StatelessWidget {
             ControllerButton(
               child: Text(
                 'LEFT',
+                style: TextStyle(color: Colors.white),
                 // style: TextStyle(fontSize: 14),
               ),
               onTapDown: (e) => _changeText('LEFT'),
@@ -38,6 +40,7 @@ class Controller extends StatelessWidget {
             ControllerButton(
               child: Text(
                 'RIGHT',
+                style: TextStyle(color: Colors.white),
                 // style: TextStyle(fontSize: 14),
               ),
               onTapDown: (e) => _changeText('RIGHT'),
@@ -48,6 +51,7 @@ class Controller extends StatelessWidget {
         ControllerButton(
           child: Text(
             'BACK',
+            style: TextStyle(color: Colors.white),
             // style: TextStyle(fontSize: 14),
           ),
           onTapDown: (e) => _changeText('BACK'),
