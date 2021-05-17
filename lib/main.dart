@@ -10,7 +10,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var _text = 'test';
+  var _text = 'STOP';
 
   void _changeText(text) {
     setState(() {

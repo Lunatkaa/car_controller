@@ -17,7 +17,8 @@ class Controller extends StatelessWidget {
             'FORWARD',
             // style: TextStyle(fontSize: 14),
           ),
-          onPressed: () => _changeText('FORWARD'),
+          onTapDown: (e) => _changeText('FORWARD'),
+          onTapUp: (e) => _changeText('STOP'),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -27,21 +28,20 @@ class Controller extends StatelessWidget {
                 'LEFT',
                 // style: TextStyle(fontSize: 14),
               ),
-              onPressed: () => _changeText('LEFT'),
+              onTapDown: (e) => _changeText('LEFT'),
+              onTapUp: (e) => _changeText('STOP'),
             ),
-            ControllerButton(
-              child: Text(
-                'STOP',
-                // style: TextStyle(fontSize: 14),
-              ),
-              onPressed: () => _changeText('STOP'),
+            Container(
+              height: 110,
+              width: 110,
             ),
             ControllerButton(
               child: Text(
                 'RIGHT',
                 // style: TextStyle(fontSize: 14),
               ),
-              onPressed: () => _changeText('RIGHT'),
+              onTapDown: (e) => _changeText('RIGHT'),
+              onTapUp: (e) => _changeText('STOP'),
             ),
           ],
         ),
@@ -50,7 +50,8 @@ class Controller extends StatelessWidget {
             'BACK',
             // style: TextStyle(fontSize: 14),
           ),
-          onPressed: () => _changeText('BACK'),
+          onTapDown: (e) => _changeText('BACK'),
+          onTapUp: (e) => _changeText('STOP'),
         ),
       ],
     );
