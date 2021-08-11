@@ -24,8 +24,8 @@ class Controller extends StatelessWidget {
             style: TextStyle(color: Colors.white),
             // style: TextStyle(fontSize: 14),
           ),
-          onTapDown: (e) => _handleButtons('FORWARD'),
-          onTapUp: (e) => _handleButtons('STOP'),
+          onPointerDown: (e) => _handleButtons('FORWARD'),
+          onPointerUp: (e) => _handleButtons('STOP'),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,8 +36,8 @@ class Controller extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
                 // style: TextStyle(fontSize: 14),
               ),
-              onTapDown: (e) => _handleButtons('LEFT'),
-              onTapUp: (e) => _handleButtons('STOP'),
+              onPointerDown: (e) => _handleButtons('LEFT'),
+              onPointerUp: (e) => _handleButtons('STOP'),
             ),
             Container(
               margin: EdgeInsets.all(10),
@@ -50,8 +50,8 @@ class Controller extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
                 // style: TextStyle(fontSize: 14),
               ),
-              onTapDown: (e) => _handleButtons('RIGHT'),
-              onTapUp: (e) => _handleButtons('STOP'),
+              onPointerDown: (e) => _handleButtons('RIGHT'),
+              onPointerUp: (e) => _handleButtons('STOP'),
             ),
           ],
         ),
@@ -61,11 +61,10 @@ class Controller extends StatelessWidget {
             style: TextStyle(color: Colors.white),
             // style: TextStyle(fontSize: 14),
           ),
-          onTapDown: (e) => _handleButtons('BACK'),
-          onTapUp: (e) => _handleButtons('STOP'),
+          onPointerDown: (e) => _handleButtons('BACK'),
+          onPointerUp: (e) => _handleButtons('STOP'),
         ),
       ],
     );
   }
 }
-// wie gehts aaron

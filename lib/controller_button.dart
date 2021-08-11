@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 class ControllerButton extends StatelessWidget {
   final Widget child;
-  final Function onTapDown;
-  final Function onTapUp;
+  final Function onPointerDown;
+  final Function onPointerUp;
 
   ControllerButton({
     @required this.child,
-    @required this.onTapDown,
-    @required this.onTapUp,
+    @required this.onPointerDown,
+    @required this.onPointerUp,
   });
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTapDown: this.onTapDown,
-      onTapUp: this.onTapUp,
+    return Listener(
+      onPointerDown: this.onPointerDown,
+      onPointerUp: this.onPointerUp,
       child: Container(
         alignment: Alignment.center,
         margin: EdgeInsets.all(10),
@@ -30,5 +30,3 @@ class ControllerButton extends StatelessWidget {
     );
   }
 }
-
-// hallo Aaron oder marco hahahah

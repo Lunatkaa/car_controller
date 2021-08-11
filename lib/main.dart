@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+// import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import 'controller.dart';
 
@@ -51,4 +51,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-// wie hoch ist die wahrscheinlichkeit dass der der das ließt Aaron heißt
