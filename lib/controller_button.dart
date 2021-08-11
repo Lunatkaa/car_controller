@@ -23,7 +23,7 @@ class ControllerButton extends StatelessWidget {
         width: 110,
         child: this.child,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(5),
           color: Colors.blue,
         ),
       ),
