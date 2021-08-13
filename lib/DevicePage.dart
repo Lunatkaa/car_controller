@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import 'DeviceContainer.dart';
@@ -36,15 +37,6 @@ class DevicePageState extends State<DevicePage> {
         _bluetoothState = state;
       });
     });
-
-    _bluetooth
-        .getBondedDevices()
-        .asStream()
-        .listen((List<BluetoothDevice> devices) {
-      setState(() {
-        _devices = devices;
-      });
-    });
   }
 
   void _enableBluetooth() {
@@ -55,6 +47,7 @@ class DevicePageState extends State<DevicePage> {
     } else {
       //Bluetooth aktivieren
       _bluetooth.requestEnable();
+      _getPairedDevices();
     }
   }
 
@@ -65,21 +58,21 @@ class DevicePageState extends State<DevicePage> {
     } else {
       //Bluetooth ausschalten
       _bluetooth.requestDisable();
+      _devices = [];
     }
   }
 
-  // void _getPairedDevices() {
-  //   try {
-  //     setState(() {
-  //       _bluetooth.getBondedDevices().then((devices) {
-  //         _devices = devices;
-  //         print(_devices.length);
-  //       });
-  //     });
-  //   } on Error {
-  //     print('ERROR');
-  //   }
-  // }
+  void _getPairedDevices() {
+    _bluetooth.getBondedDevices().then((devices) {
+      try {
+        setState(() {
+          _devices = devices;
+        });
+      } on PlatformException {
+        print('error');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,12 +103,16 @@ class DevicePageState extends State<DevicePage> {
                           _disableBluetooth();
                         }
                       }),
+                  ElevatedButton(
+                    onPressed: _getPairedDevices,
+                    child: Text('REFRESH'),
+                  ),
                 ],
               ),
             ),
-            if (_bluetoothState.isEnabled)
-              for (BluetoothDevice device in _devices)
-                DeviceContainer(device: device)
+            // if (_bluetoothState.isEnabled)
+            for (BluetoothDevice device in _devices)
+              DeviceContainer(device: device)
           ],
         ),
       ),
