@@ -3,29 +3,47 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 class DeviceContainer extends StatelessWidget {
   final BluetoothDevice device;
-  final BluetoothConnection connection;
 
-  DeviceContainer({@required this.device, @required this.connection});
+  DeviceContainer({
+    @required this.device,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 60,
-      color: Colors.red,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            children: [
-              Text(device.name),
-              Text(device.address),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children: [
+                Text(
+                  device.name,
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  device.address,
+                  style: TextStyle(
+                    color: Colors.black38,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
+            ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                BluetoothConnection.toAddress(null);
-              },
-              child: Text('CONNECT'))
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: ElevatedButton(
+                onPressed: () {
+                  BluetoothConnection.toAddress(device.address);
+                },
+                child: Text('CONNECT')),
+          )
         ],
       ),
     );

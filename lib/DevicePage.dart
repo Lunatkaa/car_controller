@@ -19,8 +19,6 @@ class DevicePageState extends State<DevicePage> {
   //Liste der geräte machen
   List<BluetoothDevice> _devices;
 
-  BluetoothConnection _connection;
-
   @override
   void initState() {
     super.initState();
@@ -39,8 +37,14 @@ class DevicePageState extends State<DevicePage> {
       });
     });
 
-    //Bluetooth aktivieren
-    _enableBluetooth();
+    _bluetooth
+        .getBondedDevices()
+        .asStream()
+        .listen((List<BluetoothDevice> devices) {
+      setState(() {
+        _devices = devices;
+      });
+    });
   }
 
   void _enableBluetooth() {
@@ -51,9 +55,6 @@ class DevicePageState extends State<DevicePage> {
     } else {
       //Bluetooth aktivieren
       _bluetooth.requestEnable();
-
-      //Geräte aktualisieren
-      _getPairedDevices();
     }
   }
 
@@ -67,23 +68,26 @@ class DevicePageState extends State<DevicePage> {
     }
   }
 
-  void _getPairedDevices() {
-    _bluetooth.getBondedDevices().then((List<BluetoothDevice> devices) {
-      setState(() {
-        _devices = devices;
-      });
-    });
-  }
+  // void _getPairedDevices() {
+  //   try {
+  //     setState(() {
+  //       _bluetooth.getBondedDevices().then((devices) {
+  //         _devices = devices;
+  //         print(_devices.length);
+  //       });
+  //     });
+  //   } on Error {
+  //     print('ERROR');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'DEVICES',
       home: Scaffold(
-        backgroundColor: Colors.blueGrey.shade900,
         appBar: AppBar(
           title: Text('Bluetooth Devices'),
-          backgroundColor: Colors.blueGrey.shade900,
         ),
         body: Column(
           children: [
@@ -94,7 +98,6 @@ class DevicePageState extends State<DevicePage> {
                   Text(
                     'Enable Bluetooth:',
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 20,
                     ),
                   ),
@@ -110,10 +113,9 @@ class DevicePageState extends State<DevicePage> {
                 ],
               ),
             ),
-            DeviceContainer(
-              device: _devices[1],
-              connection: _connection,
-            )
+            if (_bluetoothState.isEnabled)
+              for (BluetoothDevice device in _devices)
+                DeviceContainer(device: device)
           ],
         ),
       ),
