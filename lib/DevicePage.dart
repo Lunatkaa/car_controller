@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import 'DeviceContainer.dart';
-import 'ControllerPage.dart';
 
 class DevicePage extends StatefulWidget {
   @override
@@ -18,7 +17,7 @@ class DevicePageState extends State<DevicePage> {
   BluetoothState _bluetoothState = BluetoothState.UNKNOWN;
 
   //Liste der geräte machen
-  List<BluetoothDevice> _devices;
+  List<BluetoothDevice> _devices = [];
 
   @override
   void initState() {
@@ -39,14 +38,14 @@ class DevicePageState extends State<DevicePage> {
     });
   }
 
-  void _enableBluetooth() {
+  void _enableBluetooth() async {
     //testen ob Bluetooth schon aktiviert ist
     if (_bluetoothState.isEnabled) {
       //Bluetooth nicht aktivieren weil schon aktiv ist
       return;
     } else {
       //Bluetooth aktivieren
-      _bluetooth.requestEnable();
+      await _bluetooth.requestEnable();
       _getPairedDevices();
     }
   }
@@ -64,13 +63,9 @@ class DevicePageState extends State<DevicePage> {
 
   void _getPairedDevices() {
     _bluetooth.getBondedDevices().then((devices) {
-      try {
-        setState(() {
-          _devices = devices;
-        });
-      } on PlatformException {
-        print('error');
-      }
+      setState(() {
+        _devices = devices;
+      });
     });
   }
 
@@ -110,7 +105,6 @@ class DevicePageState extends State<DevicePage> {
                 ],
               ),
             ),
-            // if (_bluetoothState.isEnabled)
             for (BluetoothDevice device in _devices)
               DeviceContainer(device: device)
           ],
