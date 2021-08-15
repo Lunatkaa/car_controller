@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import 'ControllerButton.dart';
 
 class Controller extends StatelessWidget {
   final Function _changeText;
+  final BluetoothConnection _connection;
 
-  Controller(this._changeText);
+  Controller(this._changeText, this._connection);
 
   void _handleButtons(message) {
-    print(message);
+    _connection.output.add(utf8.encode(message));
     _changeText(message);
     // irgendeine bluetooth scheiße
   }

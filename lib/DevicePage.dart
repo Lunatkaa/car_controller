@@ -36,6 +36,8 @@ class DevicePageState extends State<DevicePage> {
         _bluetoothState = state;
       });
     });
+
+    _getPairedDevices();
   }
 
   void _enableBluetooth() async {
@@ -98,15 +100,21 @@ class DevicePageState extends State<DevicePage> {
                           _disableBluetooth();
                         }
                       }),
-                  ElevatedButton(
-                    onPressed: _getPairedDevices,
-                    child: Text('REFRESH'),
-                  ),
+                  _bluetoothState.isEnabled
+                      ? ElevatedButton(
+                          onPressed: _getPairedDevices,
+                          child: Text('REFRESH'),
+                        )
+                      : ElevatedButton(
+                          onPressed: null,
+                          child: Text('REFRESH'),
+                        ),
                 ],
               ),
             ),
-            for (BluetoothDevice device in _devices)
-              DeviceContainer(device: device)
+            if (_bluetoothState.isEnabled)
+              for (BluetoothDevice device in _devices)
+                DeviceContainer(device: device)
           ],
         ),
       ),

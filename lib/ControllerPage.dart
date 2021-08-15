@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import 'Controller.dart';
 
 class ControllerPage extends StatefulWidget {
+  final BluetoothConnection _connection;
+
+  ControllerPage(this._connection);
+
   @override
-  ControllerPageState createState() => ControllerPageState();
+  ControllerPageState createState() => ControllerPageState(_connection);
 }
 
 class ControllerPageState extends State<ControllerPage> {
+  final BluetoothConnection _connection;
+
+  ControllerPageState(this._connection);
+
   var _text = 'STOP';
 
   void _changeText(text) {
@@ -39,7 +48,7 @@ class ControllerPageState extends State<ControllerPage> {
             ),
             alignment: Alignment.center,
           ),
-          Controller(this._changeText),
+          Controller(_changeText, _connection),
         ],
       ),
     );

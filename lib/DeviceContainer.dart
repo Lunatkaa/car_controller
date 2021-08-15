@@ -1,3 +1,4 @@
+import 'package:car_controller/ControllerPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
@@ -39,10 +40,21 @@ class DeviceContainer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: ElevatedButton(
-                onPressed: () {
-                  BluetoothConnection.toAddress(device.address);
-                },
-                child: Text('CONNECT')),
+              onPressed: () async {
+                try {
+                  BluetoothConnection _connection =
+                      await BluetoothConnection.toAddress(device.address);
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ControllerPage(_connection),
+                    ),
+                  );
+                } on Error {
+                  print('ERROR');
+                }
+              },
+              child: Text('CONNECT'),
+            ),
           )
         ],
       ),
