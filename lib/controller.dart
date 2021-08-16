@@ -10,8 +10,11 @@ class Controller extends StatelessWidget {
 
   Controller(this._changeText, this._connection);
 
+  
+
   void _handleButtons(message) {
-    _connection.output.add(utf8.encode(message));
+    print(message);
+    _connection.output.add(ascii.encode(message));
     _changeText(message);
     // irgendeine bluetooth scheiße
   }

@@ -60,6 +60,7 @@ class DevicePageState extends State<DevicePage> {
       //Bluetooth ausschalten
       _bluetooth.requestDisable();
       _devices = [];
+      print(_devices.length);
     }
   }
 

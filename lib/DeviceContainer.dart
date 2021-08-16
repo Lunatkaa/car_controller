@@ -44,6 +44,7 @@ class DeviceContainer extends StatelessWidget {
                 try {
                   BluetoothConnection _connection =
                       await BluetoothConnection.toAddress(device.address);
+                  print('Connected to ${device.name}');
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => ControllerPage(_connection),

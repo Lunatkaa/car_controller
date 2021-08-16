@@ -26,6 +26,14 @@ class ControllerPageState extends State<ControllerPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+
+    _connection.close();
+    print('connection closed');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey.shade900,
