@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import 'DeviceContainer.dart';
@@ -114,8 +113,7 @@ class DevicePageState extends State<DevicePage> {
               ),
             ),
             if (_bluetoothState.isEnabled)
-              for (BluetoothDevice device in _devices)
-                DeviceContainer(device: device)
+              for (BluetoothDevice device in _devices) DeviceContainer(device)
           ],
         ),
       ),

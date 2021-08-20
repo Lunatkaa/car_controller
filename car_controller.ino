@@ -1,9 +1,18 @@
 String data;
 
+int In1 = 8;
+int In2 = 9;
+int In3 = 10;
+int In4 = 11;
+
 void setup()
 {
     Serial.begin(9600);
-    pinMode(13, OUTPUT);
+    pinMode(In1, OUTPUT);
+    pinMode(In2, OUTPUT);
+    pinMode(In3, OUTPUT);
+    pinMode(In4, OUTPUT);
+    Serial.setTimeout(10);
 }
 
 void loop()
@@ -12,13 +21,40 @@ void loop()
     {
         data = Serial.readString();
 
-        if (data != "STOP")
+        if (data == "FORWARD")
         {
-            digitalWrite(13, HIGH);
+            digitalWrite(In1, HIGH);
+            digitalWrite(In2, LOW);
+            digitalWrite(In3, HIGH);
+            digitalWrite(In4, LOW);
         }
-        else
+        else if (data == "BACK")
         {
-            digitalWrite(13, LOW);
+            digitalWrite(In1, LOW);
+            digitalWrite(In2, HIGH);
+            digitalWrite(In3, LOW);
+            digitalWrite(In4, HIGH);
+        }
+        else if (data == "LEFT")
+        {
+            digitalWrite(In1, HIGH);
+            digitalWrite(In2, LOW);
+            digitalWrite(In3, LOW);
+            digitalWrite(In4, HIGH);
+        }
+        else if (data == "RIGHT")
+        {
+            digitalWrite(In1, LOW);
+            digitalWrite(In2, HIGH);
+            digitalWrite(In3, HIGH);
+            digitalWrite(In4, LOW);
+        }
+        else if (data == "STOP")
+        {
+            digitalWrite(In1, LOW);
+            digitalWrite(In2, LOW);
+            digitalWrite(In3, LOW);
+            digitalWrite(In4, LOW);
         }
     }
 }

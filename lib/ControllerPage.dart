@@ -30,16 +30,15 @@ class ControllerPageState extends State<ControllerPage> {
     super.dispose();
 
     _connection.close();
-    print('connection closed');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey.shade900,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('Car Controller'),
-        backgroundColor: Colors.blueGrey.shade900,
+        title: Text('Controller'),
+        backgroundColor: Colors.blue,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +48,7 @@ class ControllerPageState extends State<ControllerPage> {
             child: Text(
               _text,
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.blue,
                 fontSize: 28,
                 fontWeight: FontWeight.w500,
               ),
